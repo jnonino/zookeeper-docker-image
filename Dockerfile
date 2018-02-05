@@ -31,8 +31,8 @@ RUN cp /opt/zookeeper/conf/zoo_sample.cfg /opt/zookeeper/conf/zoo.cfg && \
 
 # Expose:
 #   - Client Port (2181)
-#   - Matching Port (2888)
-#   - Leader Port (3888)
+#   - Follower Port (2888)
+#   - Election Port (3888)
 EXPOSE 2181 2888 3888
 
 COPY start.sh /usr/local/bin
