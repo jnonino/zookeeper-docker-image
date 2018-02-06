@@ -1,48 +1,38 @@
 #!/bin/bash
 
-ID="$(cat /var/lib/dbus/machine-id)" 
-
-#OLD_HOSTNAME="$(hostname)"
-#NEW_HOSTNAME="zookeeper-$OLD_HOSTNAME"
-#sed -i "s/$OLD_HOSTNAME/$NEW_HOSTNAME/g" /etc/hostname
-#sed -i "s/$OLD_HOSTNAME/$NEW_HOSTNAME/g" /etc/hosts
-#hostname $NEW_HOSTNAME
-
-HOSTNAME="$(hostname)"
-
 DEFAULT_IF="$(ip route list | awk '/^default/ {print $5}')"
-IPADDRESS="$(ifconfig | grep -A 1 $DEFAULT_IF | tail -1 | cut -d ':' -f 2 | cut -d ' ' -f 1)"
+IP_ADDRESS="$(ifconfig | grep -A 1 $DEFAULT_IF | tail -1 | cut -d ':' -f 2 | cut -d ' ' -f 1)"
 CIDR="$(ip -o -f inet addr show $DEFAULT_IF | awk '{print $4}')"
 
-#NETWORK_HOSTS=( $(nbtscan $CIDR | awk '{print $2}') )
-#ZOOKEEPER_HOSTS=()
-#for (( i=0; i<${#NETWORK_HOSTS[@]}; i++ )); 
-#do 
-#    if (echo stat | nc ${NETWORK_HOSTS[i]} 2181) ; then
-#        echo "Host ${NETWORK_HOSTS[i]} IS Running Zookeeper"
-#        ZOOKEEPER_HOSTS+=(${NETWORK_HOSTS[i]})
-#    else
-#        echo "Host ${NETWORK_HOSTS[i]} IS NOT Running Zookeeper"
-#    fi
-#done
+NODE_ID=$(echo $IP_ADDRESS | sed 's/[^0-9]*//g')
 
-cd /opt/zookeeper
+# TODO
+# Look for another host in the network that runs zookeeper and add its IP to OTHER_ZK_NODE variable
+OTHER_ZK_NODE=$1
 
-ZK=$1
-if [ -n "$ZK" ] 
+
+if [ -n "$OTHER_ZK_NODE" ] 
 then
-    echo "`zkCli.sh -server $ZK:2181 get /zookeeper/config | grep ^server`" >> /opt/zookeeper/conf/zoo.cfg.dynamic
-    echo "server.$ID=$IPADDRESS:2888:3888:observer;2181" >> /opt/zookeeper/conf/zoo.cfg.dynamic
+    echo "Other hosts localized, starting this Zookeeper as a cluster node"
+    # Fetch other nodes configurations
+    echo "`zkCli.sh -server $OTHER_ZK_NODE:2181 get /zookeeper/config | grep ^server`" >> /opt/zookeeper/conf/zoo.cfg.dynamic
+    # Add this node as an observer to the cluster
+    echo "server.$NODE_ID=$IP_ADDRESS:2888:3888:observer;2181" >> /opt/zookeeper/conf/zoo.cfg.dynamic
+
     cp /opt/zookeeper/conf/zoo.cfg.dynamic /opt/zookeeper/conf/zoo.cfg.dynamic.org
-    zkServer-initialize.sh --force --myid=$ID
-    ZOO_LOG_DIR=/var/log ZOO_LOG4J_PROP='INFO,CONSOLE,ROLLINGFILE' zkServer.sh start
-    zkCli.sh -server $ZK:2181 reconfig -add "server.$ID=$IPADDRESS:2888:3888:participant;2181"
+    # Initialize and start server
+    zkServer-initialize.sh --force --myid=$NODE_ID
+    zkServer.sh start
+    # Ask the cluster to reconfigure with this node as participant
+    zkCli.sh -server $OTHER_ZK_NODE:2181 reconfig -add "server.$ID=$IP_ADDRESS:2888:3888:participant;2181"
+    # Restart the server
     zkServer.sh stop
-    ZOO_LOG_DIR=/var/log ZOO_LOG4J_PROP='INFO,CONSOLE,ROLLINGFILE' zkServer.sh start-foreground
+    zkServer.sh start-foreground
 else
-    echo "server.$ID=$IPADDRESS:2888:3888;2181" >> /opt/zookeeper/conf/zoo.cfg.dynamic
-    zkServer-initialize.sh --force --myid=$ID
-    ZOO_LOG_DIR=/var/log ZOO_LOG4J_PROP='INFO,CONSOLE,ROLLINGFILE' zkServer.sh start-foreground
+    echo "No other host localized, starting the first Zookeeper node"
+    # Add this node to cluster configuration
+    echo "server.$NODE_ID=$IP_ADDRESS:2888:3888;2181" >> /opt/zookeeper/conf/zoo.cfg.dynamic
+    # Initialize and start server
+    zkServer-initialize.sh --force --myid=$NODE_ID
+    zkServer.sh start-foreground
 fi
-
-

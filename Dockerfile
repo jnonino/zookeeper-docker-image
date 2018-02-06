@@ -36,4 +36,4 @@ RUN cp /opt/zookeeper/conf/zoo_sample.cfg /opt/zookeeper/conf/zoo.cfg && \
 EXPOSE 2181 2888 3888
 
 COPY start.sh /usr/local/bin
-CMD ["/usr/local/bin/start.sh"]
+ENTRYPOINT ["/usr/local/bin/start.sh"]
