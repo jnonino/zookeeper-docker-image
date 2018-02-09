@@ -22,13 +22,6 @@ RUN cp /opt/zookeeper/conf/zoo_sample.cfg /opt/zookeeper/conf/zoo.cfg && \
     echo "standaloneEnabled=false" >> /opt/zookeeper/conf/zoo.cfg && \
     echo "dynamicConfigFile=/opt/zookeeper/conf/zoo.cfg.dynamic" >> /opt/zookeeper/conf/zoo.cfg
 
-#  conf_dir: /etc/zookeeper/conf
-#  data_dir: /var/lib/zookeeper
-#  log_dir: /var/log/zookeeper
-#  path: /opt/zookeeper
-#  dynamic_conf_file: /etc/zookeeper/conf/zoo.cfg.dynamic
-
-
 # Expose:
 #   - Client Port (2181)
 #   - Follower Port (2888)
@@ -36,4 +29,4 @@ RUN cp /opt/zookeeper/conf/zoo_sample.cfg /opt/zookeeper/conf/zoo.cfg && \
 EXPOSE 2181 2888 3888
 
 COPY start.sh /usr/local/bin
-ENTRYPOINT ["/usr/local/bin/start.sh"]
+ENTRYPOINT [ "/usr/local/bin/start.sh" ]
