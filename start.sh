@@ -8,7 +8,7 @@ NODE_ID=$(echo $IP_ADDRESS | sed 's/[^0-9]*//g')
 
 # TODO
 # Look for another host in the network that runs zookeeper and add its IP to OTHER_ZK_NODE variable
-NETWORK_HOSTS=( $(nbtscan $CIDR | awk '{print $1}') )
+    #NETWORK_HOSTS=( $(nbtscan $CIDR | awk '{print $1}') )
 
 # Example node1:2181 or node2:2182
 OTHER_ZK_NODE=$1
