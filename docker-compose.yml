@@ -1,8 +1,0 @@
-version: '3'
-services:
-  zookeeper:
-    image: "zookeeper:latest"
-    ports:
-      - "2181"
-      - "2888"
-      - "3888"

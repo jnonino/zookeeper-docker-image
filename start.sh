@@ -9,6 +9,8 @@ NODE_ID=$(echo $IP_ADDRESS | sed 's/[^0-9]*//g')
 # TODO
 # Look for another host in the network that runs zookeeper and add its IP to OTHER_ZK_NODE variable
 NETWORK_HOSTS=( $(nbtscan $CIDR | awk '{print $1}') )
+
+# Example node1:2181 or node2:2182
 OTHER_ZK_NODE=$1
 
 
@@ -16,10 +18,9 @@ if [ -n "$OTHER_ZK_NODE" ]
 then
     echo "Other hosts localized, starting this Zookeeper as a cluster node"
     # Fetch other nodes configurations
-    echo "`zkCli.sh -server $OTHER_ZK_NODE:2181 get /zookeeper/config | grep ^server`" >> /opt/zookeeper/conf/zoo.cfg.dynamic
+    echo "`zkCli.sh -server $OTHER_ZK_NODE get /zookeeper/config | grep ^server`" >> /opt/zookeeper/conf/zoo.cfg.dynamic
     # Add this node as an observer to the cluster
     echo "server.$NODE_ID=$IP_ADDRESS:2888:3888:observer;2181" >> /opt/zookeeper/conf/zoo.cfg.dynamic
-
     cp /opt/zookeeper/conf/zoo.cfg.dynamic /opt/zookeeper/conf/zoo.cfg.dynamic.org
     # Initialize and start server
     zkServer-initialize.sh --force --myid=$NODE_ID
