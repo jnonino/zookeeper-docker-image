@@ -6,7 +6,7 @@ This Docker Image creates a Zookeeper node that can form a Zookeeper Cluster in 
 
 In order to start Zookeeper cluster, you need to run the first node using the following command:
 
-    docker run --name zk1 --network data-processing jnonino/zookeeper-docker-image  
+    docker run --name zk1 jnonino/zookeeper-docker-image
 
 Then, you need to obtain the IP address of that node, you can doing by running this command:
 
