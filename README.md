@@ -2,7 +2,7 @@
 
 This Docker Image creates a Zookeeper node that can form a Zookeeper Cluster in combination to other Zookeeper nodes.
 
-# Start Zookeeper Cluster
+## Start Zookeeper Cluster
 
 In order to start Zookeeper cluster, you need to run the first node using the following command:
 
