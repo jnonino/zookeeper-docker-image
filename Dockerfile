@@ -20,6 +20,8 @@ WORKDIR /opt/zookeeper
 
 RUN cp /opt/zookeeper/conf/zoo_sample.cfg /opt/zookeeper/conf/zoo.cfg && \
     echo "standaloneEnabled=false" >> /opt/zookeeper/conf/zoo.cfg && \
+    echo "reconfigEnabled=true" >> /opt/zookeeper/conf/zoo.cfg && \
+    echo "skipACL=yes" >> /opt/zookeeper/conf/zoo.cfg && \
     echo "dynamicConfigFile=/opt/zookeeper/conf/zoo.cfg.dynamic" >> /opt/zookeeper/conf/zoo.cfg
 
 # Expose:

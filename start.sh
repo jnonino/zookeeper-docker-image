@@ -3,7 +3,6 @@
 DEFAULT_IF="$(ip route list | awk '/^default/ {print $5}')"
 IP_ADDRESS="$(ifconfig | grep -A 1 $DEFAULT_IF | tail -1 | cut -d ':' -f 2 | cut -d ' ' -f 1)"
 CIDR="$(ip -o -f inet addr show $DEFAULT_IF | awk '{print $4}')"
-
 NODE_ID=$(echo $IP_ADDRESS | sed 's/[^0-9]*//g')
 
 # TODO
@@ -13,10 +12,9 @@ NODE_ID=$(echo $IP_ADDRESS | sed 's/[^0-9]*//g')
 # Example node1:2181 or node2:2182
 OTHER_ZK_NODE=$1
 
-
 if [ -n "$OTHER_ZK_NODE" ] 
 then
-    echo "Other hosts localized, starting this Zookeeper as a cluster node"
+    echo "Other hosts localized, starting this Zookeeper as a cluster node"    
     # Fetch other nodes configurations
     echo "`zkCli.sh -server $OTHER_ZK_NODE get /zookeeper/config | grep ^server`" >> /opt/zookeeper/conf/zoo.cfg.dynamic
     # Add this node as an observer to the cluster
@@ -26,7 +24,7 @@ then
     zkServer-initialize.sh --force --myid=$NODE_ID
     zkServer.sh start
     # Ask the cluster to reconfigure with this node as participant
-    zkCli.sh -server $OTHER_ZK_NODE:2181 reconfig -add "server.$ID=$IP_ADDRESS:2888:3888:participant;2181"
+    zkCli.sh -server $OTHER_ZK_NODE reconfig -add "server.$NODE_ID=$IP_ADDRESS:2888:3888:participant;2181"
     # Restart the server
     zkServer.sh stop
     zkServer.sh start-foreground
