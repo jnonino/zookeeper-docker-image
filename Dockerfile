@@ -1,5 +1,5 @@
 FROM ubuntu:xenial
-LABEL maintainer="Julian Nonino <noninojulian@outlook.com>"
+LABEL maintainer="Julian Nonino <noninojulian@gmail.com>"
 
 # Install required tools, tar, curl, net-tools and Java JRE
 RUN apt-get update -y && \
