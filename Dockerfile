@@ -1,4 +1,4 @@
-FROM ubuntu:xenial
+FROM ubuntu
 LABEL maintainer="Julian Nonino <noninojulian@gmail.com>"
 
 # Install required tools, tar, curl, net-tools and Java JRE
@@ -8,8 +8,8 @@ RUN apt-get update -y && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Install Zookeeper
-ENV ZOOKEEPER_VERSION 3.5.3-beta
-RUN curl -O http://www-us.apache.org/dist/zookeeper/zookeeper-$ZOOKEEPER_VERSION/zookeeper-$ZOOKEEPER_VERSION.tar.gz && \
+ENV ZOOKEEPER_VERSION 3.5.5
+RUN curl -O http://apache.mirror.anlx.net/zookeeper/zookeeper-$ZOOKEEPER_VERSION/apache-zookeeper-$ZOOKEEPER_VERSION.tar.gz && \
     tar -xvf zookeeper-$ZOOKEEPER_VERSION.tar.gz && \
     rm -rf zookeeper-$ZOOKEEPER_VERSION.tar.gz && \
     mv zookeeper-$ZOOKEEPER_VERSION zookeeper && \
