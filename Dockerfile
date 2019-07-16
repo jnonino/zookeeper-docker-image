@@ -3,7 +3,7 @@ LABEL maintainer="Julian Nonino <noninojulian@gmail.com>"
 
 # Install required tools, tar, curl, net-tools and Java JRE
 RUN apt-get update -y && \
-    apt-get install -y tar curl net-tools iproute netcat nbtscan openjdk-8-jre-headless && \
+    apt-get install -y tar curl net-tools iproute2 netcat nbtscan openjdk-8-jre-headless && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
