@@ -1,4 +1,4 @@
-# Zookeeper Docker Image
+# Zookeeper Docker Image [![Docker hub](https://img.shields.io/docker/pulls/jnonino/zookeeper.svg)](https://hub.docker.com/r/jnonino/zookeeper/)
 
 This Docker Image creates a Zookeeper node that can form a Zookeeper Cluster in combination to other Zookeeper nodes.
 
