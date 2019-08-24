@@ -1,8 +1,16 @@
-# Zookeeper Docker Image [![Docker hub](https://img.shields.io/docker/pulls/jnonino/zookeeper.svg)](https://hub.docker.com/r/jnonino/zookeeper/)
+# Zookeeper Docker Image
 
 This Docker Image creates a Zookeeper node that can form a Zookeeper Cluster in combination to other Zookeeper nodes.
 
-https://hub.docker.com/r/jnonino/zookeeper-docker-image/
+[![](https://img.shields.io/docker/pulls/jnonino/zookeeper)](https://hub.docker.com/r/jnonino/zookeeper/)
+[![](hhttps://img.shields.io/docker/build/jnonino/zookeeper)](https://hub.docker.com/r/jnonino/zookeeper/)
+[![](https://img.shields.io/docker/automated/jnonino/zookeeper)](https://hub.docker.com/r/jnonino/zookeeper/)
+[![](https://img.shields.io/docker/stars/jnonino/zookeeper)](https://hub.docker.com/r/jnonino/zookeeper/)
+[![](https://img.shields.io/github/license/jnonino/zookeeper-docker-image)](https://github.com/jnonino/zookeeper-docker-image)
+[![](https://img.shields.io/github/issues/jnonino/zookeeper-docker-image)](https://github.com/jnonino/zookeeper-docker-image)
+[![](https://img.shields.io/github/issues-closed/jnonino/zookeeper-docker-image)](https://github.com/jnonino/zookeeper-docker-image)
+[![](https://img.shields.io/github/languages/code-size/jnonino/zookeeper-docker-image)](https://github.com/jnonino/zookeeper-docker-image)
+[![](https://img.shields.io/github/repo-size/jnonino/zookeeper-docker-image)](https://github.com/jnonino/zookeeper-docker-image)
 
 ## Start Zookeeper Cluster
 
