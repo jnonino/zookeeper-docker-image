@@ -6,11 +6,11 @@ This Docker Image creates a Zookeeper node that can form a Zookeeper Cluster in 
 [![](hhttps://img.shields.io/docker/build/jnonino/zookeeper)](https://hub.docker.com/r/jnonino/zookeeper/)
 [![](https://img.shields.io/docker/automated/jnonino/zookeeper)](https://hub.docker.com/r/jnonino/zookeeper/)
 [![](https://img.shields.io/docker/stars/jnonino/zookeeper)](https://hub.docker.com/r/jnonino/zookeeper/)
-[![](https://img.shields.io/github/license/cn-docker/zookeeper-docker-image)](https://github.com/cn-docker/zookeeper-docker-image)
-[![](https://img.shields.io/github/issues/cn-docker/zookeeper-docker-image)](https://github.com/cn-docker/zookeeper-docker-image)
-[![](https://img.shields.io/github/issues-closed/cn-docker/zookeeper-docker-image)](https://github.com/cn-docker/zookeeper-docker-image)
-[![](https://img.shields.io/github/languages/code-size/cn-docker/zookeeper-docker-image)](https://github.com/cn-docker/zookeeper-docker-image)
-[![](https://img.shields.io/github/repo-size/cn-docker/zookeeper-docker-image)](https://github.com/cn-docker/zookeeper-docker-image)
+[![](https://img.shields.io/github/license/cn-docker/zookeeper)](https://github.com/cn-docker/zookeeper)
+[![](https://img.shields.io/github/issues/cn-docker/zookeeper)](https://github.com/cn-docker/zookeeper)
+[![](https://img.shields.io/github/issues-closed/cn-docker/zookeeper)](https://github.com/cn-docker/zookeeper)
+[![](https://img.shields.io/github/languages/code-size/cn-docker/zookeeper)](https://github.com/cn-docker/zookeeper)
+[![](https://img.shields.io/github/repo-size/cn-docker/zookeeper)](https://github.com/cn-docker/zookeeper)
 
 ## Start Zookeeper Cluster
 
