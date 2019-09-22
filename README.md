@@ -2,10 +2,10 @@
 
 This Docker Image creates a Zookeeper node that can form a Zookeeper Cluster in combination to other Zookeeper nodes.
 
-[![](https://img.shields.io/docker/pulls/jnonino/zookeeper)](https://hub.docker.com/r/jnonino/zookeeper/)
-[![](hhttps://img.shields.io/docker/build/jnonino/zookeeper)](https://hub.docker.com/r/jnonino/zookeeper/)
-[![](https://img.shields.io/docker/automated/jnonino/zookeeper)](https://hub.docker.com/r/jnonino/zookeeper/)
-[![](https://img.shields.io/docker/stars/jnonino/zookeeper)](https://hub.docker.com/r/jnonino/zookeeper/)
+[![](https://img.shields.io/docker/pulls/cnservices/zookeeper)](https://hub.docker.com/r/cnservices/zookeeper/)
+[![](hhttps://img.shields.io/docker/build/cnservices/zookeeper)](https://hub.docker.com/r/cnservices/zookeeper/)
+[![](https://img.shields.io/docker/automated/cnservices/zookeeper)](https://hub.docker.com/r/cnservices/zookeeper/)
+[![](https://img.shields.io/docker/stars/cnservices/zookeeper)](https://hub.docker.com/r/cnservices/zookeeper/)
 [![](https://img.shields.io/github/license/cn-docker/zookeeper)](https://github.com/cn-docker/zookeeper)
 [![](https://img.shields.io/github/issues/cn-docker/zookeeper)](https://github.com/cn-docker/zookeeper)
 [![](https://img.shields.io/github/issues-closed/cn-docker/zookeeper)](https://github.com/cn-docker/zookeeper)
@@ -24,8 +24,8 @@ Then, you need to obtain the IP address of that node, you can doing by running t
 
 You can run as many nodes as you want by running the following commands. You should always run an odd number of nodes, usually three or five.
 
-    docker run --name zk2 jnonino/zookeeper <IP_ANOTHER_ZOOKEEPER_NODE>:2181  
-    docker run --name zk3 jnonino/zookeeper <IP_ANOTHER_ZOOKEEPER_NODE>:2181  
-    docker run --name zk4 jnonino/zookeeper <IP_ANOTHER_ZOOKEEPER_NODE>:2181  
-    docker run --name zk5 jnonino/zookeeper <IP_ANOTHER_ZOOKEEPER_NODE>:2181  
+    docker run --name zk2 cnservices/zookeeper <IP_ANOTHER_ZOOKEEPER_NODE>:2181  
+    docker run --name zk3 cnservices/zookeeper <IP_ANOTHER_ZOOKEEPER_NODE>:2181  
+    docker run --name zk4 cnservices/zookeeper <IP_ANOTHER_ZOOKEEPER_NODE>:2181  
+    docker run --name zk5 cnservices/zookeeper <IP_ANOTHER_ZOOKEEPER_NODE>:2181  
 
