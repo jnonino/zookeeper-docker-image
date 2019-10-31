@@ -8,8 +8,8 @@ RUN apt-get update -y && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Install Zookeeper
-ENV ZOOKEEPER_VERSION 3.5.5
-RUN curl -O http://apache.mirror.anlx.net/zookeeper/stable/apache-zookeeper-$ZOOKEEPER_VERSION-bin.tar.gz && \
+ENV ZOOKEEPER_VERSION 3.5.6
+RUN curl -O http://apache.mirror.anlx.net/zookeeper/zookeeper-$ZOOKEEPER_VERSION/apache-zookeeper-$ZOOKEEPER_VERSION-bin.tar.gz && \
     tar -xvf apache-zookeeper-$ZOOKEEPER_VERSION-bin.tar.gz && \
     rm -rf apache-zookeeper-$ZOOKEEPER_VERSION-bin.tar.gz && \
     mv apache-zookeeper-$ZOOKEEPER_VERSION-bin zookeeper && \
